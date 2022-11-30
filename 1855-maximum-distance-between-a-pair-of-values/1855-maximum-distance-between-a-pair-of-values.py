@@ -9,6 +9,6 @@ class Solution:
                 j=j+1
             else:
                 i=i+1
-            if i>j:
+            if i>=j:
                 j=j+1
         return md
