@@ -5,7 +5,7 @@ class Solution:
         max_len = 0
         for we in range(len(s)):
             curr_str = s[we]
-            if curr_str in hsmap:
+            if curr_str in hsmap: 
                 if ws <= hsmap[curr_str]:
                     ws = hsmap[curr_str]+1
             hsmap[curr_str]=we
