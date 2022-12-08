@@ -1,0 +1,15 @@
+class Solution:
+    def leafSimilar(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> bool:
+        self.res = []
+        def isSimilar(root):
+            if root == None:
+                return
+            elif root.left == None and root.right == None:
+                self.res.append(root.val)
+                return self.res
+            isSimilar(root.left)
+            isSimilar(root.right)
+            return self.res
+        l1 = isSimilar(root1)
+        self.res = []
+        l2 = isSimilar(root2
