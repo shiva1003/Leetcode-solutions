@@ -1,0 +1,12 @@
+def maxProduct(self, root: Optional[TreeNode]) -> int:
+        self.max = treeSum = 0
+        def sum(root):
+            if (not root):
+                return 0
+            subtreeSum = root.val + sum(root.left) + sum(root.right)
+            product = (treeSum - subtreeSum) * subtreeSum
+            self.max = max(self.max, product)
+            return subtreeSum
+        treeSum = sum(root) # Compute sum of entire tree first.
+        sum(root) # Second call to properly compute maximum split product.
+        return self.max % (10 ** 9 + 7)
