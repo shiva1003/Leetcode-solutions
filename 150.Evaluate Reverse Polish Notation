@@ -1,0 +1,17 @@
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+        res=[]
+        operations={
+            '+': lambda y,x:x+y,
+            '-': lambda y,x:x-y,
+            '*': lambda y,x:x*y,
+            '/': lambda y,x:int(x/y)
+        }
+        
+        for ch in tokens:
+            if ch in operations:
+                res.append(operations[ch](res.pop(),res.pop()))
+            else:
+                res.append(int(ch))
+        
+        return res[-1]
