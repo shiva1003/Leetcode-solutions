@@ -1,0 +1,20 @@
+class Solution:
+    def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
+        visited = set()
+        stack = [0]
+        while stack:
+            room = stack.pop()
+            visited.add(room)
+            for key in rooms[room]:
+                if key not in visited:
+                    stack.append(key)
+        return len(visited) == len(rooms)
+        
+        
+        
+Approach
+using stack to append key of each into visited rooms if total visited is equal to length of rooms then return True
+[[1, 3], [3, 0, 1], [2], [0]]
+
+visited = [], stack = [0] --> visited = [0], stack = []
+vitited = [0], stack = [1, 3] --> visited = [0, 3, 1]
