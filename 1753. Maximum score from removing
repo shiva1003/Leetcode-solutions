@@ -1,0 +1,14 @@
+class Solution:
+    def maximumScore(self, a: int, b: int, c: int) -> int:
+        result = 0
+        max_heap = [-a, -b, -c]
+        heapify(max_heap)
+        while len(max_heap)>1:
+            a = heapq.heappop(max_heap)
+            b = heapq.heappop(max_heap)
+            result, a, b = result + 1, a + 1, b + 1
+            if a < 0:
+                heapq.heappush(max_heap, a)
+            if b < 0:
+                heapq.heappush(max_heap, b)
+        return result
