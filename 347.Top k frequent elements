@@ -1,0 +1,8 @@
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        result = []
+        max_heap = [(-val, key) for key, val in collections.Counter(nums).items()]
+        heapq.heapify(max_heap)
+        for i in range(k):
+            result.append(heapq.heappop(max_heap)[1])
+        return result
