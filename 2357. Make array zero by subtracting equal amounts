@@ -1,0 +1,18 @@
+class Solution:
+    def minimumOperations(self, nums: List[int]) -> int:
+        min_heap = []
+        for i in range (len(nums)):
+            heapq.heappush(min_heap, nums[i])
+        while min_heap and min_heap[0] == 0:
+            heapq.heappop(min_heap)
+        count = 0
+        while min_heap :
+            small_val = min_heap[0]
+            for i in range( len(min_heap)):
+                min_heap[i] = min_heap[i] - small_val
+            while min_heap and min_heap[0] == 0:
+                heapq.heappop(min_heap)
+            count+=1
+        return count
+                
+Console
