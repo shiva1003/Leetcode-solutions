@@ -1,0 +1,21 @@
+class Solution:
+    def maxPerformance(self, n: int, speed: List[int], efficiency: List[int], k: int) -> int:
+        result = []
+        for i in range (n):
+            result.append([speed[i], efficiency[i]]) #append both speed and efficiency by merging them together
+        result.sort(key = lambda x:x[1], reverse = True) # sort the appended result on basis of descending order of efficiency 
+        total_sum, performance = 0, 0 # initialize these two variables 
+        min_heap = []
+        heapq.heapify(min_heap) # make a minimum heap and heapify
+        for i in range(len(result)):
+            curr_speed = result[i][0] # assign first index as current speed
+            curr_eff = result[i][1]  # second index as efficiency
+            while len(min_heap) >= k: # untill the heap has greater length then the provided length of k
+                temp_var = heapq.heappop(min_heap) # start pop min ele at each iteration
+                total_sum -= temp_var # decrease that iterated value from the total sum which you have added while creating its heap
+            heapq.heappush(min_heap, curr_speed) # now push the current speed into the heap
+            total_sum += curr_speed # after pushing in heap increment the total sum
+            performance = max(performance, total_sum * curr_eff) # choose the maximum performance os per the given formula
+        return performance % (10**9 + 7) # use this condition as it is given in the question
+
+
