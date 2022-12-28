@@ -1,0 +1,8 @@
+class Solution:
+    def minStoneSum(self, piles: List[int], k: int) -> int:
+        max_heap = [-x for x in piles] #taking max heap in form of list comprehension (-x) for bringing maximum element at the top
+        heapq.heapify(max_heap) 
+        while k > 0:
+            heapq.heappush(max_heap, -((-heapq.heappop(max_heap)+1)//2)) # firstly we pop the element then apply -sign, add one and make it half, mark negative sign to push it again in heap
+            k -= 1 #decrement k 
+        return abs(sum(max_heap))   #return absolute sum as all elements are negative.        
