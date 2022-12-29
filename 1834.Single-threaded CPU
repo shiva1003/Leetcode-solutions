@@ -1,0 +1,20 @@
+class Solution:
+    def getOrder(self, tasks: List[List[int]]) -> List[int]:
+        for i in range(len(tasks)):
+            tasks[i].append(i)       
+        tasks.sort()
+        currTime = taskIndex = 0
+        ans = []
+        avail = []
+        while taskIndex < len(tasks) or avail:
+            if not avail and currTime < tasks[taskIndex][0]:
+                currTime = tasks[taskIndex][0]           
+            while taskIndex < len(tasks) and currTime >= tasks[taskIndex][0]:
+                heapq.heappush(avail, (tasks[taskIndex][1], tasks[taskIndex][2]))
+                taskIndex += 1            
+            processing, i = heapq.heappop(avail)
+            currTime += processing
+            ans.append(i)       
+        return ans
+
+        
