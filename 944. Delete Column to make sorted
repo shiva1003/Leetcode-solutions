@@ -1,0 +1,9 @@
+class Solution:
+    def minDeletionSize(self, str: List[str]) -> int:
+        count = 0
+        for c in range(len(str[0])):
+            for r in range(1, len(str)):
+                if str[r-1][c] > str[r][c]:
+                    count += 1
+                    break
+        return count
