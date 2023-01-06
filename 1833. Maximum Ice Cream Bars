@@ -1,0 +1,12 @@
+class Solution:
+    def maxIceCream(self, costs: List[int], coins: int) -> int:
+        min_heap = []
+        count, sum1 = 0, 0
+        for i in range (len(costs)):
+            heapq.heappush(min_heap, costs[i])
+        while min_heap:
+            sum1 += heapq.heappop(min_heap)
+            if sum1 <= coins:
+                count += 1
+                continue
+        return count 
