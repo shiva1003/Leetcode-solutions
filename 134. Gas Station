@@ -1,0 +1,31 @@
+class Solution:
+    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
+        #greedy
+        # if total gas is less than the total cost for traveling one 
+        # station to other 
+        # then it may happen that we ran out of gas
+        if sum(gas)<sum(cost):
+            return -1
+        # find the difference between gas[i] and cost[i]
+        # if +ve then we will start from that indx
+        # if -ve then we will seek another point for travelling
+        # +ve means after paying the cost we still have gas left in our tank
+        # -ve mens we ran out of gas 
+        total_sum=0
+        # take a varible to return the index value from where we have 
+        # we have to start
+        idx=0
+        for i in range(len(gas)):
+            total_sum+=gas[i]-cost[i]
+            # if diff is negative we will check 
+            #another point to start with
+            if total_sum<0:
+                #make the diff 0 if negative
+                total_sum=0
+                #increase the pointer and check the diff
+                idx=i+1
+        # return the index value of gas station we need to start with
+        # so that we can travel all station and reach the initial 
+        # station from where we satarted with
+        return idx
+                
