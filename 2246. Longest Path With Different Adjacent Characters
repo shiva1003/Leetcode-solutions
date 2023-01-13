@@ -1,0 +1,44 @@
+class Node:
+    def __init__(self, val):
+        self.val = val
+        self.children = []
+        
+class Solution:
+    def longestPath(self, parent: List[int], s: str) -> int:
+        max_length = 1
+        
+        def dfs(node):
+            nonlocal max_length
+            if not node.children: return 1
+            
+            lengths = []
+            heapify(lengths)
+            lengths.append(0)
+           
+            
+            for child in node.children:
+                l = dfs(child) 
+                le = 0
+                if child.val != node.val:
+                    le = l 
+                
+                heappush(lengths, le)
+                
+            first, second = nlargest(2, lengths)
+            max_length = max(max_length, first + second + 1)
+            return max(lengths) + 1
+            
+
+        children = []
+        for i in range(len(parent)):
+            children.append(Node(None))
+            
+        for i in range(len(parent)):
+            index = parent[i]
+            children[i].val = s[i]
+            if index == -1:
+                continue 
+            children[index].children.append(children[i])
+            
+        dfs(children[0])
+        return max_length
