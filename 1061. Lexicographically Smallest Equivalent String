@@ -1,0 +1,24 @@
+class Solution:
+    def smallestEquivalentString(self, s1: str, s2: str, baseStr: str) -> str:
+        # Union Find Implementation
+        def find(x):
+            if parent[x] == x: return x
+            parent[x] = find(parent[x])
+            return parent[x]
+        
+        def union(x, y):
+            X, Y = find(parent[x]), find(parent[y])
+            if X == Y: return
+            if ord(X) < ord(Y): parent[Y] = X
+            else: parent[X] = Y
+        
+        parent = {}
+        for char in "abcdefghijklmnopqrstuvwxyz":
+            parent[char] = char
+        
+        for i in range(len(s1)):
+            union(s1[i], s2[i])
+        
+        return "".join([find(char) for char in baseStr])
+
+        
