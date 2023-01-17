@@ -1,0 +1,18 @@
+class Solution:
+    def minFlipsMonoIncr(self, s: str) -> int:
+        one_count = 0
+        zero_to_one = 0
+        for char in s:
+            if char == '1':
+                one_count += 1  # update occurrence of '1'
+            else:
+                zero_to_one = min(zero_to_one + 1, one_count)
+        return zero_to_one  
+				# current digit is '0'
+                # need to flip when 0 is on the tail of current substring
+                
+                # option_1: flip current 0 to 1, keep leading digits, then substring is monotone increasing
+                
+                # option_2: flip leading 1s to 0s, keep current 0, then substring is monotone increasing
+                
+                # select optimal solution
