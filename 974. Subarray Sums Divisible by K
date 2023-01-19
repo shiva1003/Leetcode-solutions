@@ -1,0 +1,14 @@
+class Solution:
+    def subarraysDivByK(self, nums: List[int], k: int) -> int:
+        freq_ar = [0]*k
+        freq_ar[0] = 1
+        sum = 0
+        count = 0
+        for num in range(len(nums)):
+            sum += nums[num]
+            remainder = sum % k
+            if remainder < 0 : # when num is negative
+                remainder += k # n+k or remainder+k
+            count += freq_ar[remainder]
+            freq_ar[remainder] += 1
+        return count
