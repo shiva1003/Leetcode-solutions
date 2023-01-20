@@ -1,0 +1,16 @@
+class Solution:
+    def findSubsequences(self, nums: List[int]) -> List[List[int]]:
+        self.ans=set()
+        def helper(nums,sub,i):
+            if i == len(nums):
+                if len(sub) >=2 and tuple(sub) not in self.ans: 
+                    self.ans.add(tuple(sub))
+                return
+            helper(nums,sub,i+1)
+            if not sub or (sub and sub[-1] <= nums[i]):
+                helper(nums,sub+[nums[i]],i+1)
+
+        helper(nums,[],0)
+        return self.ans
+
+            
