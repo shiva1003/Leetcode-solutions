@@ -1,0 +1,12 @@
+class Solution:
+    def countDistinctIntegers(self, nums: List[int]) -> int:
+        reverse_n = []
+        for i in nums:
+            temp = int(str(i)[::-1])
+            reverse_n.append(temp)
+        final = len(set(reverse_n[:] + nums[:]))
+        return final
+
+       
+
+    
