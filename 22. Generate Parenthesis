@@ -1,0 +1,40 @@
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        def solve(result,output,  open, close):
+            if open == 0 and close == 0:
+                result.append(output)
+            if open > 0:
+                solve(result, output +'(', open-1, close)
+            if close > 0 and open < close:
+                solve(result, output +')', open, close - 1)
+        result = []
+        solve(result,'', n, n)
+        return result
+
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+        
+        
