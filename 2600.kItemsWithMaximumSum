@@ -1,0 +1,8 @@
+class Solution:
+    def kItemsWithMaximumSum(self, numOnes: int, numZeros: int, numNegOnes: int, k: int) -> int:
+        # if nomOnes is greater than k , then k will be maximum 
+        if k <= numOnes:
+            return k
+        # else apply a bit math to form such conditions
+        else:
+            return numOnes - max(0, k-numOnes-numZeros)
