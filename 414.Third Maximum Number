@@ -1,0 +1,15 @@
+class Solution:
+    def thirdMax(self, nums: List[int]) -> int:
+        res = [] #to remove duplicate elemnts
+        for i in nums:
+            if i not in res:
+                res.append(i)
+        max_heap = []
+        if len(res) < 3: #case when list is <3
+            return max(res) # then willnot be any 3rd max
+        for i in range(len(res)):
+            heapq.heappush(max_heap, res[i]) #push into heap
+        heapq.heapify(max_heap)
+        while len(max_heap) != 3: #for returning 3rd max
+            heapq.heappop(max_heap)
+        return max_heap[-3]
