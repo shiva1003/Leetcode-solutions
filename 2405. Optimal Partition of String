@@ -1,0 +1,11 @@
+class Solution:
+    def partitionString(self, s: str) -> int:
+        ans = 1  # starts with 1 becz its d biggest substring
+        result = set()
+        for i in s: 
+            if i in result:#if current character has already appeared.
+                ans += 1 #increase count becz its already present then 
+                # its means we need to make newstring and clear old one
+                result.clear()#clear set to new substring.
+            result.add(i)# else add i 
+        return ans
