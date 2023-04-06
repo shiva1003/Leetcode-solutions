@@ -1,0 +1,32 @@
+class Solution:
+    directions=[(-1,0),(0,1),(0,-1),(1,0)] #make direction array to check in all direction
+    def closedIsland(self, grid: List[List[int]]) -> int:
+        def dfs(row,col,grid):
+           
+            if (row<0 or row>=len(grid) or col<0 or col>=len(grid[0])or grid[row][col] != 0):
+                return #base condition
+            grid[row][col] = 1
+            
+            for direction in self.directions:
+                new_row=row+direction[0] 
+                new_col=col+direction[1]
+                dfs(new_row,new_col,grid) 
+        
+        n = len(grid) #put 0 in the outermost column of the grid becaz it can never b a 
+        m = len(grid[0]) #closed island 
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if i == 0 or i == n-1 or j == 0 or j == m-1:
+                    if grid[i][j] == 0:
+                        dfs(i,j,grid)
+        
+
+        
+        c=0
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if(grid[i][j]==0):
+                    dfs(i,j,grid)
+                    c += 1
+                    
+        return c
